@@ -76,6 +76,11 @@ body {
   object-fit: contain;
 }
 
+.card-content {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
 .blur {
   /* Добавляем размытие */
   filter: blur(20px);
@@ -107,6 +112,13 @@ body {
 .button:active {
   transform: scale(0.95); /* Уменьшаем размер кнопки для эффекта нажатия */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Меняем тень для улучшения эффекта */
+}
+
+.button-like {
+  background-color: rgb(140, 0, 255);
+  position: absolute;
+  top: 50%;
+  right: 10vh;
 }
 
 /* Анимация мигания кнопки */

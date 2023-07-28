@@ -11,35 +11,29 @@ type Direction = 'up' | 'down' | 'right' | 'left';
 function Tinder(): JSX.Element {
   const [people, setPeople] = useState<Person[]>([]);
   const [showPerson, setShowPerson] = useState(false);
+  const [final, setFinal] = useState(false);
 
   const [showMatchNotification, setShowMatchNotification] = useState(false);
 
   useEffect(() => {
     api.loadPeople().then((data) => setPeople(data));
+    setFinal(true);
   }, []);
 
-  const [lastDirection, setLastDirection] = useState<Direction | undefined>();
-
-  const swiped = (direction: Direction, nameToDelete: string): void => {
-    console.log('removing: ' + nameToDelete);
-
+  const handleLike = (): void => {
     setShowPerson(false);
-
     setShowMatchNotification(true);
-
-    setLastDirection(direction);
     setPeople((prevPeople) => prevPeople.slice(1));
+    setTimeout(() => setShowMatchNotification(false), 500);
   };
-
-  const outOfFrame = (name: string): void => setShowMatchNotification(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (lastDirection && people.length === 0) {
+    if (final && people.length === 0) {
       navigate('/final');
     }
-  }, [people, lastDirection]);
+  }, [people]);
 
   const blurClass = showPerson ? '' : 'blur';
 
@@ -55,42 +49,34 @@ function Tinder(): JSX.Element {
       />
 
       {people.length > 0 ? (
-        <div className="cardContainer">
-          <div className="card">
-            {' '}
-            <img
-              src={`/photos/${people[0].profilePic}`}
-              className={blurClass}
-              alt=""
-            />
-          </div>
-
-          <TinderCard
-            className="swipe"
-            key={people[0].name}
-            onSwipe={(dir) => swiped(dir, people[0].name)}
-            onCardLeftScreen={() => outOfFrame(people[0].name)}
-          >
+        <>
+          <div className="cardContainer">
             <div className="card">
-              <h3 className={blurClass}>{people[0].name}</h3>
-              <p>{people[0].description}</p>
-              <b>{people[0].details}</b>
+              {' '}
+              <img
+                src={`/photos/${people[0].profilePic}`}
+                className={blurClass}
+                alt=""
+              />
+              <div className="card-content">
+                <h3 className={blurClass}>{people[0].name}</h3>
+                <p>{people[0].description}</p>
+                <b>{people[0].details}</b>
+              </div>
             </div>
-          </TinderCard>
-          {/*           <div className="card" style={{ width: '100%' }}>
-           
-          </div> */}
-        </div>
+          </div>
+          <button className="button button-like" onClick={handleLike}>
+            LIKE
+          </button>
+        </>
       ) : (
-        <p>Киты плывут...</p>
+        <p>Киты ещё плывут...</p>
       )}
-      {showPerson ? (
-        ''
-      ) : (
-        <button className="button" onClick={() => setShowPerson(true)}>
-          SHOW
-        </button>
-      )}
+
+      <button className="button" onClick={() => setShowPerson(true)}>
+        SHOW
+      </button>
+
       <MatchNotification show={showMatchNotification} />
     </Container>
   );
