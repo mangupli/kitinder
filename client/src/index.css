@@ -56,16 +56,14 @@ body {
 }
 
 .cardContainer {
-  /*   height: 60vh;
-  max-height: 60vh; */
-  width: 65vh;
+  width: 50%;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  margin-top: 5vh;
+  margin: 40px auto 40px;
 }
 
 .card {
+  position: relative;
   margin: 0 auto;
   padding: 20px;
 }
@@ -90,14 +88,15 @@ body {
 .button {
   display: block;
   margin: 0 auto;
-  width: 60px; /* Задаем фиксированную ширину кнопки */
-  height: 60px; /* Задаем фиксированную высоту кнопки */
+  width: 100px; /* Задаем фиксированную ширину кнопки */
+  height: 100px; /* Задаем фиксированную высоту кнопки */
   border-radius: 50%; /* Создаем круглую форму */
   padding: 0; /* Убираем внутренние отступы кнопки */
   background-color: rgb(255, 77, 246); /* Цвет кнопки (розовый) */
   color: white; /* Цвет текста (белый) */
   text-align: center;
   text-decoration: none;
+  font-size: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Тень кнопки для создания эффекта нажатия */
   cursor: pointer;
   animation: pulse 2s infinite; /* Мигание кнопки с интервалом 2 секунды бесконечно */
@@ -118,7 +117,13 @@ body {
   background-color: rgb(140, 0, 255);
   position: absolute;
   top: 50%;
-  right: 10vh;
+  right: 150px;
+}
+
+.button-show {
+  position: absolute;
+  top: 50%;
+  left: 150px;
 }
 
 /* Анимация мигания кнопки */
@@ -167,4 +172,23 @@ body {
 
 .final-container img {
   width: 70vw;
+}
+
+.profile-img {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.5s ease,
+    visibility 0s linear 0.5s;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  right: 20px;
+  width: calc(100% - 40px);
+}
+
+.profile-img.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease;
 }

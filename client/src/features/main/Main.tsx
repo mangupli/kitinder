@@ -6,7 +6,7 @@ export default function Main(): JSX.Element {
   return (
     <Container>
       <div className="final-container">
-        <Gif/>
+        <Gif />
       </div>
     </Container>
   );

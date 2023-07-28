@@ -24,7 +24,7 @@ function Tinder(): JSX.Element {
     setShowPerson(false);
     setShowMatchNotification(true);
     setPeople((prevPeople) => prevPeople.slice(1));
-    setTimeout(() => setShowMatchNotification(false), 500);
+    setTimeout(() => setShowMatchNotification(false), 600);
   };
 
   const navigate = useNavigate();
@@ -39,23 +39,18 @@ function Tinder(): JSX.Element {
 
   return (
     <Container>
-      <link
-        href="https://fonts.googleapis.com/css?family=Damion&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css?family=Alatsi&display=swap"
-        rel="stylesheet"
-      />
-
       {people.length > 0 ? (
         <>
           <div className="cardContainer">
             <div className="card">
               {' '}
               <img
+                src={`/photos/${people[0].shadow}`}
+                alt=""
+              />
+              <img
                 src={`/photos/${people[0].profilePic}`}
-                className={blurClass}
+                className={`profile-img ${showPerson ? 'show' : ''}`}
                 alt=""
               />
               <div className="card-content">
@@ -73,9 +68,16 @@ function Tinder(): JSX.Element {
         <p>Киты ещё плывут...</p>
       )}
 
-      <button className="button" onClick={() => setShowPerson(true)}>
-        SHOW
-      </button>
+      {showPerson ? (
+        ''
+      ) : (
+        <button
+          className="button button-show"
+          onClick={() => setShowPerson(true)}
+        >
+          SHOW
+        </button>
+      )}
 
       <MatchNotification show={showMatchNotification} />
     </Container>
