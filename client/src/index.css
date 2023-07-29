@@ -228,3 +228,20 @@ body {
   visibility: visible;
   transition: opacity 0.5s ease;
 }
+
+.footer {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+@media (max-width: 767px) {
+  .final-container img {
+    width: 100%;
+  }
+  .footer {
+    position: absolute;
+    bottom: 10px;
+    font-weight: 400;
+    color: rgb(66, 81, 107);
+  }
+}
