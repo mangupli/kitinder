@@ -58,7 +58,7 @@ body {
 .navbar-brand {
   font-size: 50px;
   margin: auto;
-  color: hwb(200 0% 0%);
+  color: #00a9fd;
 }
 
 .cardContainer {
