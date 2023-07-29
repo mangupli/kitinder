@@ -62,10 +62,14 @@ body {
 }
 
 .cardContainer {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  margin: 40px auto 40px;
+  width: 100%;
+  /*   display: flex;
+  flex-direction: row;
+  align-items: center; */
+  /*   display: grid;
+  grid-template-columns: repeat(3, 1fr); */
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -83,6 +87,22 @@ body {
 .card-content {
   margin-top: 20px;
   font-size: 20px;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 767px) {
+  .cardContainer {
+    grid-template-columns: auto;
+    grid-auto-flow: row;
+  }
 }
 
 .blur {
@@ -119,17 +139,29 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Меняем тень для улучшения эффекта */
 }
 
-.button-like {
-  background-color: rgb(140, 0, 255);
-  position: absolute;
-  top: 50%;
-  right: 150px;
+.button-showPerson {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
 }
 
-.button-show {
-  position: absolute;
-  top: 50%;
-  left: 150px;
+.button-showPerson.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.button-like {
+  background-color: rgb(140, 0, 255);
+}
+
+@media (max-width: 600px) {
+  .button {
+    height: 70px;
+    width: 70px;
+  }
 }
 
 /* Анимация мигания кнопки */
@@ -174,6 +206,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .final-container img {

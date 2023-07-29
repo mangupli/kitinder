@@ -42,12 +42,17 @@ function Tinder(): JSX.Element {
       {people.length > 0 ? (
         <>
           <div className="cardContainer">
+            <button
+              className={`button button-showPerson ${
+                !showPerson ? 'show' : ''
+              }`}
+              onClick={() => setShowPerson(true)}
+            >
+              SHOW
+            </button>
             <div className="card">
               {' '}
-              <img
-                src={`/photos/${people[0].shadow}`}
-                alt=""
-              />
+              <img src={`/photos/${people[0].shadow}`} alt="" />
               <img
                 src={`/photos/${people[0].profilePic}`}
                 className={`profile-img ${showPerson ? 'show' : ''}`}
@@ -59,24 +64,13 @@ function Tinder(): JSX.Element {
                 <b>{people[0].details}</b>
               </div>
             </div>
+            <button className="button button-like" onClick={handleLike}>
+              LIKE
+            </button>
           </div>
-          <button className="button button-like" onClick={handleLike}>
-            LIKE
-          </button>
         </>
       ) : (
         <p>Киты ещё плывут...</p>
-      )}
-
-      {showPerson ? (
-        ''
-      ) : (
-        <button
-          className="button button-show"
-          onClick={() => setShowPerson(true)}
-        >
-          SHOW
-        </button>
       )}
 
       <MatchNotification show={showMatchNotification} />
